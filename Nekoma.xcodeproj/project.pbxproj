@@ -8,17 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		EC037BED2C12FD0000014136 /* NekomaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC037BEC2C12FD0000014136 /* NekomaApp.swift */; };
-		EC037BEF2C12FD0000014136 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC037BEE2C12FD0000014136 /* ContentView.swift */; };
+		EC037BEF2C12FD0000014136 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC037BEE2C12FD0000014136 /* GameView.swift */; };
 		EC037BF12C12FD0400014136 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC037BF02C12FD0400014136 /* Assets.xcassets */; };
 		EC037BF42C12FD0400014136 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC037BF32C12FD0400014136 /* Preview Assets.xcassets */; };
+		EC6067F42C1497A0001E4CA5 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6067F32C1497A0001E4CA5 /* GameModel.swift */; };
+		EC6067F62C14A2C2001E4CA5 /* GameFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6067F52C14A2C2001E4CA5 /* GameFunction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		EC037BE92C12FD0000014136 /* Nekoma.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nekoma.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC037BEC2C12FD0000014136 /* NekomaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NekomaApp.swift; sourceTree = "<group>"; };
-		EC037BEE2C12FD0000014136 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		EC037BEE2C12FD0000014136 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		EC037BF02C12FD0400014136 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC037BF32C12FD0400014136 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		EC6067F32C1497A0001E4CA5 /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
+		EC6067F52C14A2C2001E4CA5 /* GameFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFunction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +56,9 @@
 			isa = PBXGroup;
 			children = (
 				EC037BEC2C12FD0000014136 /* NekomaApp.swift */,
-				EC037BEE2C12FD0000014136 /* ContentView.swift */,
+				EC037BEE2C12FD0000014136 /* GameView.swift */,
+				EC6067F32C1497A0001E4CA5 /* GameModel.swift */,
+				EC6067F52C14A2C2001E4CA5 /* GameFunction.swift */,
 				EC037BF02C12FD0400014136 /* Assets.xcassets */,
 				EC037BF22C12FD0400014136 /* Preview Content */,
 			);
@@ -137,8 +143,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC037BEF2C12FD0000014136 /* ContentView.swift in Sources */,
+				EC037BEF2C12FD0000014136 /* GameView.swift in Sources */,
+				EC6067F62C14A2C2001E4CA5 /* GameFunction.swift in Sources */,
 				EC037BED2C12FD0000014136 /* NekomaApp.swift in Sources */,
+				EC6067F42C1497A0001E4CA5 /* GameModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

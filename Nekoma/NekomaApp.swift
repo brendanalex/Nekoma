@@ -11,7 +11,7 @@ import SwiftUI
 struct NekomaApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            GameView()
         }
     }
 }
