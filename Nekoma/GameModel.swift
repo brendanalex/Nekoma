@@ -11,8 +11,8 @@ enum AttackType: String {
 }
 
 enum EnemyName: String {
-    case rat = "Rat"
-    case flea = "Flea"
+    case flea = "flea"
+    case pig = "pig"
 }
 
 enum RarityLevel: String {
@@ -22,7 +22,7 @@ enum RarityLevel: String {
 }
 
 enum ChestType: String {
-    case common = "Common"
+    case basic = "Basic"
     case special = "Special"
 }
 
@@ -49,7 +49,7 @@ class Cat {
     }
 }
 
-class Enemies {
+class Enemy {
     let id: Int
     let name: EnemyName
     let type: AttackType
