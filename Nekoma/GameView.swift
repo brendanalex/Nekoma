@@ -15,17 +15,23 @@ struct GameView: View {
             Text("Chests Content:")
                 .font(.title)
                 .padding()
-
-            ForEach(game.chests!.indices, id: \.self) { index in
-                if let content = game.chests![index].content {
+            
+            ForEach(game.chests!) { chest in
+                if let content = chest.content {
                     switch content {
-                    case .weapon(let weapon):
-                        Text("Chest \(index + 1): Weapon - \(weapon.name)")
-                    case .fish(let fish):
-                        Text("Chest \(index + 1): Fish - \(fish.name)")
+                    case .single(let type):
+                        switch type {
+                        case .weapon(let weapon):
+                            Text("Chest \(chest.id): Weapon - \(weapon.name)")
+                        case .fish(let fish):
+                            Text("Chest \(chest.id): Fish - \(fish.name)")
+                        }
+                    case .multiple(let types):
+                        // Handle multiple types of content
+                        Text("Chest \(chest.id): Multiple - \(types.count) items")
                     }
                 } else {
-                    Text("Chest \(index + 1): Empty")
+                    Text("Chest \(chest.id): Empty")
                 }
             }
         }

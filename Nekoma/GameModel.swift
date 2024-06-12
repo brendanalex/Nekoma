@@ -6,29 +6,27 @@
 //
 
 enum AttackType: String {
-    case melee = "Melee"
-    case ranged = "Ranged"
+    case melee, ranged
 }
 
 enum EnemyName: String {
-    case flea = "flea"
-    case pig = "pig"
+    case flea, pig
 }
 
 enum RarityLevel: String {
-    case common = "Common"
-    case uncommon = "Uncommon"
-    case rare = "Rare"
+    case common, uncommon, rare
 }
 
 enum ChestType: String {
-    case basic = "Basic"
-    case special = "Special"
+    case basic, special
 }
 
 enum ChestContent {
-    case weapon(Weapon)
-    case fish(Fish)
+    case single(ChestContentType), multiple([ChestContentType])
+}
+
+enum ChestContentType {
+    case weapon(Weapon), fish(Fish)
 }
 
 class Cat {
@@ -96,10 +94,7 @@ struct SpecialPower {
     // What the power does is not yet defined
 }
 
-struct Chest {
+struct Chest: Identifiable {
     let id: Int
-    let type: ChestType
     let content: ChestContent?
 }
-
-

@@ -96,58 +96,73 @@ class StartGame: ObservableObject {
     func distributeChests(roomsWithChest: Int, filledChests: Int, bossAppear: Bool) -> [Chest] {
         var chestPlacement: [Chest] = []
         var chestLeft: Int = filledChests
-        var chestType: ChestType = .basic
         var chestContent: ChestContent?
         
         for roomNumber in 1...roomsWithChest {
             chestContent = nil
             if roomNumber == roomsWithChest {
                 if bossAppear {
-                    chestType = .special
+                    chestContent = .multiple([getWeapon(rarityValue: .rare)!, getFish(rarityValue: .rare)!])
+                } else {
+                    chestContent = .single(getChestContent(lastRoom: true)!)
                 }
-                chestContent = getChestContent(lastRoom: true)
                 chestLeft -= 1
             } else if chestLeft > 1 {
                 if roomNumber % 2 == 0 {
-                    chestContent = getChestContent(lastRoom: false)
+                    chestContent = .single(getChestContent(lastRoom: false)!)
                     chestLeft -= 1
                 }
             }
-            print(chestLeft)
-            chestPlacement.append(Chest(id: roomNumber, type: chestType, content: chestContent))
+            chestPlacement.append(Chest(id: roomNumber, content: chestContent))
+        }
+        
+        // For printing, gonna delete later
+        for item in chestPlacement {
+            if let content = item.content {
+                switch content {
+                case .single(let type):
+                    switch type {
+                    case .fish(let fish):
+                        print("Chest \(item.id): ContentType: Fish, Name: \(fish.name)")
+                    case .weapon(let weapon):
+                        print("Chest \(item.id): ContentType: Weapon, Name: \(weapon.name)")
+                    }
+                case .multiple(let types):
+                    for type in types {
+                        switch type {
+                        case .fish(let fish):
+                            print("Chest \(item.id): ContentType: Fish, Name: \(fish.name)")
+                        case .weapon(let weapon):
+                            print("Chest \(item.id): ContentType: Weapon, Name: \(weapon.name)")
+                        }
+                    }
+                }
+            } else {
+                print("Chest \(item.id): Empty")
+            }
         }
         
         return chestPlacement
     }
     
-    // 80% weapon - 20% fish
-    func getChestContent(lastRoom: Bool) -> ChestContent? {
+    func getChestContent(lastRoom: Bool) -> ChestContentType? {
         let randomValue = Float.random(in: 0...1)
-        print("Content: \(randomValue)")
+//        print("Content: \(randomValue)")
         let rarityValue = getRarity()
         let chance: Float = {
             return lastRoom ? 0.1 : 0.8
         }()
         
         if randomValue <= chance {
-            // 80% chance to get a weapon
-            let filteredWeapons = weapons!.filter { $0.rarity == rarityValue }
-            if let randomWeapon = filteredWeapons.randomElement() {
-                return .weapon(randomWeapon)
-            }
+            return getWeapon(rarityValue: rarityValue)
         } else {
-            // 20% chance to get a fish
-            let filteredFish = fishes!.filter { $0.rarity == rarityValue }
-            if let randomFish = filteredFish.randomElement() {
-                return .fish(randomFish)
-            }
+            return getFish(rarityValue: rarityValue)
         }
-        return nil
     }
     
     func getRarity() -> RarityLevel? {
         let randomValue = Float.random(in: 0...1)
-        print("Rarity: \(randomValue)")
+//        print("Rarity: \(randomValue)")
         let modifier = Float(currentLevel!)
         if randomValue <= (0.1 * modifier - max(0 , 0.05 * (modifier - 1))) {
             return .rare
@@ -156,6 +171,22 @@ class StartGame: ObservableObject {
         } else {
             return .common
         }
+    }
+    
+    func getWeapon(rarityValue: RarityLevel?) -> ChestContentType? {
+        let filteredWeapons = weapons!.filter { $0.rarity == rarityValue }
+        if let randomWeapon = filteredWeapons.randomElement() {
+            return .weapon(randomWeapon)
+        }
+        return nil
+    }
+    
+    func getFish(rarityValue: RarityLevel?) -> ChestContentType? {
+        let filteredFish = fishes!.filter { $0.rarity == rarityValue }
+        if let randomFish = filteredFish.randomElement() {
+            return .fish(randomFish)
+        }
+        return nil
     }
 }
 
